@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Knowledge Assistant — Admin: Add Document</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f5f7;
+    color: #1a1a1a;
+  }
+  header {
+    background: #041e42;
+    color: #fff;
+    padding: 14px 20px;
+  }
+  header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+  header .sub { font-size: 12px; color: #9fb3d1; margin-top: 2px; }
+
+  main { max-width: 560px; margin: 30px auto; padding: 0 20px; }
+
+  .card {
+    background: #fff;
+    border: 1px solid #e2e4e8;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+  }
+  .card h2 { font-size: 14px; margin: 0 0 12px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  input[type="password"], input[type="file"] {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid #d5d7db;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .hint { font-size: 12px; color: #8a8f98; margin-top: -8px; margin-bottom: 14px; }
+  button {
+    padding: 10px 18px;
+    background: #0a5eb8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:disabled { background: #9fb3d1; cursor: not-allowed; }
+  button:hover:not(:disabled) { background: #084a92; }
+
+  #result {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    white-space: pre-wrap;
+    display: none;
+  }
+  #result.success { background: #eaf7ea; color: #1c7c34; display: block; }
+  #result.error { background: #fdf2f2; color: #a02020; display: block; }
+  #result.working { background: #fff8e6; color: #8a6d00; display: block; }
+
+  .back { font-size: 13px; color: #0a5eb8; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Local Knowledge Assistant — Admin</h1>
+  <div class="sub">Add or replace a contract. Runs the full ingestion pipeline automatically — chunking, embedding, and the searchable index.</div>
+</header>
+
+<main>
+  <a class="back" href="/">&larr; Back to chat</a>
+
+  <div class="card" style="margin-top:16px;">
+    <h2>Upload a document</h2>
+
+    <label for="admin-key">Admin key</label>
+    <input type="password" id="admin-key" placeholder="Enter your admin key" autocomplete="off">
+    <div class="hint">Only needed once per browser session below. Set on the server with $env:RAG_ADMIN_KEY before starting it.</div>
+
+    <label for="file-input">Document file (PDF, DOCX, CSV, XLSX, or an image/screenshot)</label>
+    <input type="file" id="file-input" accept=".pdf,.docx,.csv,.xlsx,.xls,.png,.jpg,.jpeg,.webp,.bmp,.tiff">
+
+    <button id="upload-btn">Upload &amp; Ingest</button>
+
+    <div id="result"></div>
+  </div>
+
+  <div class="card">
+    <h2>What happens when you upload</h2>
+    <div style="font-size: 13px; color: #444; line-height: 1.6;">
+      1. The file is saved into the project folder.<br>
+      2. Text is extracted (OCR runs automatically for scanned pages).<br>
+      3. It's split into chunks and embedded into the vector database.<br>
+      4. Your local model writes a short summary of what it covers, for the search index.<br><br>
+      This can take a few minutes for large or scanned documents — leave this tab open. Re-uploading a file with the same name replaces the old version (use this for quarterly contract refreshes).
+    </div>
+  </div>
+</main>
+
+<script>
+const fileInput = document.getElementById('file-input');
+const keyInput = document.getElementById('admin-key');
+const uploadBtn = document.getElementById('upload-btn');
+const result = document.getElementById('result');
+
+uploadBtn.addEventListener('click', async () => {
+  const file = fileInput.files[0];
+  const key = keyInput.value.trim();
+
+  if (!file) {
+    result.className = 'error';
+    result.textContent = 'Choose a file first.';
+    return;
+  }
+  if (!key) {
+    result.className = 'error';
+    result.textContent = 'Enter the admin key first.';
+    return;
+  }
+
+  uploadBtn.disabled = true;
+  result.className = 'working';
+  result.textContent = `Uploading and ingesting "${file.name}"... this can take a few minutes for scanned documents. Please leave this tab open.`;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const res = await fetch('/admin/ingest', {
+      method: 'POST',
+      headers: { 'X-Admin-Key': key },
+      body: formData
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      result.className = 'error';
+      result.textContent = 'Error: ' + (data.detail || 'Upload failed.');
+    } else if (data.success) {
+      result.className = 'success';
+      result.textContent = `Done. "${data.name}" ingested — ${data.chunks} chunks across ${data.pages} pages. The index summary was generated automatically.`;
+    } else {
+      result.className = 'error';
+      result.textContent = 'Error: ' + (data.error || 'Unknown failure.');
+    }
+  } catch (e) {
+    result.className = 'error';
+    result.textContent = 'Error: could not reach the server. Is it still running?';
+  } finally {
+    uploadBtn.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>

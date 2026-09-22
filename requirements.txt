@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+pydantic
+chromadb
+sentence-transformers
+pdfplumber
+pymupdf
+easyocr
+python-docx
+pandas
+openpyxl
+requests
+beautifulsoup4
+lxml
+python-multipart

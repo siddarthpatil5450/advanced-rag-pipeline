@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# This project's generated data — never commit real ingested documents,
+# vector DB contents, OCR cache, or the auto-generated index. Everyone who
+# clones this repo generates their own by running the ingest command on
+# their own documents.
+rag_data3/
+model_cache/
+*.db
+*.sqlite
+*.sqlite3
+
+# Your own source documents — don't accidentally commit real contracts/data.
+/documents/
+/uploads/
+*.pdf
+*.docx
+*.xlsx
+*.csv
+
+# Secrets
+.env
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
