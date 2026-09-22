@@ -1,4 +1,4 @@
-<svg width="1200" height="627" viewBox="0 0 1200 627" xmlns="http://www.w3.org/2000/svg">
+<svg width="1560" height="580" viewBox="0 0 1560 580" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#050b1a"/>
@@ -22,6 +22,10 @@
       <stop offset="0%" stop-color="#3d2c10"/>
       <stop offset="100%" stop-color="#28190a"/>
     </linearGradient>
+    <linearGradient id="roseFace" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a1830"/>
+      <stop offset="100%" stop-color="#240f1e"/>
+    </linearGradient>
 
     <marker id="arrowC" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L7,3.5 L0,7 Z" fill="#4fd6ff"/>
@@ -32,174 +36,210 @@
 
     <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
       <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="10"/>
+      <feGaussianBlur stdDeviation="12"/>
     </filter>
 
     <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
-      <path d="M0,0 L0,42 M0,0 L42,0" stroke="#1c3a66" stroke-width="0.6" opacity="0.35"/>
+      <path d="M0,0 L0,42 M0,0 L42,0" stroke="#1c3a66" stroke-width="0.6" opacity="0.3"/>
     </pattern>
   </defs>
 
-  <!-- Base -->
-  <rect width="1200" height="627" fill="url(#bg)"/>
-  <rect width="1200" height="627" fill="url(#grid)"/>
+  <rect width="1560" height="580" fill="url(#bg)"/>
+  <rect width="1560" height="580" fill="url(#grid)"/>
+  <circle cx="1420" cy="150" r="150" fill="#00ffb0" opacity="0.05" filter="url(#softGlow)"/>
+  <circle cx="120" cy="480" r="150" fill="#5be08a" opacity="0.05" filter="url(#softGlow)"/>
+  <rect x="0" y="0" width="1560" height="3" fill="url(#edgeGlow)"/>
 
-  <!-- Ambient glow orbs -->
-  <circle cx="1080" cy="90" r="160" fill="#00e0ff" opacity="0.06" filter="url(#softGlow)"/>
-  <circle cx="120" cy="560" r="180" fill="#5be08a" opacity="0.05" filter="url(#softGlow)"/>
+  <!-- ============ HEADER ============ -->
+  <text x="48" y="58" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="800" fill="#f2f8ff">ADVANCED RAG PIPELINE:</text>
+  <text x="48" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="700" fill="#7fd8ff">Local, Cited &amp; Fully Open Source</text>
+  <text x="50" y="118" font-family="'Consolas','SF Mono',monospace" font-size="13" fill="#6fd8ff" letter-spacing="1.2">DOCUMENT Q&amp;A &#183; TEXT-TO-SQL &#183; ON-DEVICE INFERENCE</text>
 
-  <!-- Top accent line -->
-  <rect x="0" y="0" width="1200" height="3" fill="url(#edgeGlow)"/>
-
-  <!-- Header -->
-  <text x="56" y="70" font-family="'Segoe UI', Arial, sans-serif" font-size="38" font-weight="800" fill="#f2f8ff" letter-spacing="0.3">ADVANCED RAG PIPELINE</text>
-  <text x="58" y="97" font-family="'Consolas', 'SF Mono', monospace" font-size="14" fill="#6fd8ff" letter-spacing="1.4">DOCUMENT Q&amp;A &#183; TEXT-TO-SQL &#183; ON-DEVICE INFERENCE</text>
-
-  <!-- Badge: 0% cloud -->
+  <!-- badge -->
   <g filter="url(#glow)">
-    <rect x="988" y="34" width="156" height="34" rx="17" fill="#04121f" stroke="#00e0ff" stroke-width="1.4"/>
+    <rect x="1150" y="30" width="330" height="36" rx="18" fill="#04121f" stroke="#00e0ff" stroke-width="1.4"/>
   </g>
-  <rect x="988" y="34" width="156" height="34" rx="17" fill="#04121f" stroke="#00e0ff" stroke-width="1.4"/>
-  <circle cx="1008" cy="51" r="4" fill="#00ffb0"/>
-  <text x="1022" y="56" font-family="'Consolas', monospace" font-size="13" font-weight="700" fill="#c9fff0" letter-spacing="0.8">0% CLOUD CALLS</text>
+  <rect x="1150" y="30" width="330" height="36" rx="18" fill="#04121f" stroke="#00e0ff" stroke-width="1.4"/>
+  <circle cx="1172" cy="48" r="4.5" fill="#00ffb0"/>
+  <text x="1186" y="53" font-family="'Consolas',monospace" font-size="14" font-weight="700" fill="#c9fff0">100% LOCAL &#183; ZERO CLOUD EXPOSURE</text>
 
-  <line x1="56" y1="118" x2="1144" y2="118" stroke="#1c3a66" stroke-width="1"/>
+  <line x1="48" y1="132" x2="1512" y2="132" stroke="#1c3a66" stroke-width="1"/>
 
-  <!-- ===================== MAIN FLOW (left, ~76%) ===================== -->
+  <!-- ============ INGESTION PHASE PANEL ============ -->
+  <rect x="30" y="150" width="760" height="145" rx="16" fill="#0a1a35" opacity="0.55" stroke="#2f6ec2" stroke-width="1.4"/>
+  <text x="758" y="172" text-anchor="end" font-family="'Consolas',monospace" font-size="13" font-weight="700" fill="#7fc9ff" letter-spacing="1">INGESTION PHASE</text>
+
   <g font-family="'Segoe UI', Arial, sans-serif">
+    <!-- Documents -->
+    <rect x="46" y="190" width="170" height="80" rx="12" fill="url(#chipFace)" stroke="#4fd6ff" stroke-width="1.4"/>
+    <rect x="60" y="202" width="28" height="28" rx="8" fill="#eaf6ff"/>
+    <path d="M68 208 h10 l4 4 v12 h-14 z" fill="#ffffff" stroke="#1668c9" stroke-width="1.6"/>
+    <path d="M78 208 v4 h4" fill="none" stroke="#1668c9" stroke-width="1.3"/>
+    <line x1="70" y1="218" x2="79" y2="218" stroke="#1668c9" stroke-width="1.1"/>
+    <line x1="70" y1="221.5" x2="79" y2="221.5" stroke="#1668c9" stroke-width="1.1"/>
+    <text x="100" y="220" font-size="14.5" font-weight="700" fill="#eaf5ff">DOCUMENTS</text>
+    <text x="100" y="238" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">PDF &#183; DOCX &#183; XLSX</text>
+    <text x="100" y="252" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">SCREENSHOTS &#183; PHOTOS</text>
 
-    <!-- Node: Documents -->
-    <rect x="56" y="158" width="176" height="72" rx="12" fill="url(#chipFace)" stroke="#2f6ec2" stroke-width="1.6"/>
-    <rect x="56" y="158" width="176" height="72" rx="12" fill="none" stroke="#4fd6ff" stroke-width="0.6" opacity="0.5"/>
-    <!-- doc icon -->
-    <path d="M74 174 h20 l8 8 v24 h-28 z" fill="none" stroke="#7fc9ff" stroke-width="1.6"/>
-    <path d="M94 174 v8 h8" fill="none" stroke="#7fc9ff" stroke-width="1.6"/>
-    <text x="112" y="184" font-size="15.5" font-weight="700" fill="#eaf5ff">Your Documents</text>
-    <text x="112" y="202" font-size="11.5" fill="#8fb8e0" font-family="'Consolas',monospace">PDF &#183; DOCX &#183; XLSX</text>
-    <text x="112" y="216" font-size="11.5" fill="#8fb8e0" font-family="'Consolas',monospace">SCREENSHOTS &#183; PHOTOS</text>
+    <line x1="216" y1="230" x2="230" y2="230" stroke="#4fd6ff" stroke-width="2" marker-end="url(#arrowC)"/>
 
-    <line x1="232" y1="194" x2="248" y2="194" stroke="#4fd6ff" stroke-width="2.2" marker-end="url(#arrowC)"/>
+    <!-- OCR -->
+    <rect x="232" y="190" width="150" height="80" rx="12" fill="url(#chipFace)" stroke="#4fd6ff" stroke-width="1.4"/>
+    <rect x="246" y="202" width="28" height="28" rx="8" fill="#eaf6ff"/>
+    <path d="M252 216 Q260 209 268 216 Q260 223 252 216 Z" fill="#ffffff" stroke="#1668c9" stroke-width="1.5"/>
+    <circle cx="260" cy="216" r="2.6" fill="#1668c9"/>
+    <text x="286" y="220" font-size="14.5" font-weight="700" fill="#eaf5ff">OCR</text>
+    <text x="286" y="238" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">EasyOCR fallback</text>
+    <text x="286" y="252" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">auto-detected</text>
 
-    <!-- Node: OCR + Chunk + Embed -->
-    <rect x="250" y="158" width="210" height="72" rx="12" fill="url(#chipFace)" stroke="#2f6ec2" stroke-width="1.6"/>
-    <circle cx="271" cy="180" r="9" fill="none" stroke="#7fc9ff" stroke-width="1.6"/>
-    <path d="M266 180 h10 M271 175 v10" stroke="#7fc9ff" stroke-width="1.4"/>
-    <text x="287" y="182" font-size="14.5" font-weight="700" fill="#eaf5ff">OCR &#183; Chunk &#183; Embed</text>
-    <text x="287" y="200" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">EasyOCR fallback</text>
-    <text x="287" y="215" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">MiniLM-L6-v2 embed</text>
+    <line x1="382" y1="230" x2="396" y2="230" stroke="#4fd6ff" stroke-width="2" marker-end="url(#arrowC)"/>
 
-    <line x1="460" y1="194" x2="476" y2="194" stroke="#4fd6ff" stroke-width="2.2" marker-end="url(#arrowC)"/>
+    <!-- Chunking & Embedding -->
+    <rect x="398" y="190" width="190" height="80" rx="12" fill="url(#chipFace)" stroke="#4fd6ff" stroke-width="1.4"/>
+    <rect x="412" y="202" width="28" height="28" rx="8" fill="#eaf6ff"/>
+    <path d="M418 220 h14 v-3 h-14 z" fill="#1668c9" opacity="0.85"/>
+    <path d="M420 215 h14 v-3 h-14 z" fill="#1668c9" opacity="0.6"/>
+    <path d="M422 210 h14 v-3 h-14 z" fill="#1668c9" opacity="0.4"/>
+    <text x="452" y="214" font-size="13.5" font-weight="700" fill="#eaf5ff">CHUNKING &amp;</text>
+    <text x="452" y="230" font-size="13.5" font-weight="700" fill="#eaf5ff">EMBEDDING</text>
+    <text x="452" y="250" font-size="10" fill="#8fb8e0" font-family="'Consolas',monospace">MiniLM-L6-v2 embed</text>
 
-    <!-- Node: ChromaDB -->
-    <rect x="478" y="158" width="180" height="72" rx="12" fill="url(#chipFace)" stroke="#2f6ec2" stroke-width="1.6"/>
-    <path d="M496 178 a10 5 0 1 0 20 0 a10 5 0 1 0 -20 0 M496 178 v14 a10 5 0 0 0 20 0 v-14" fill="none" stroke="#7fc9ff" stroke-width="1.6"/>
-    <text x="528" y="182" font-size="14.5" font-weight="700" fill="#eaf5ff">ChromaDB</text>
-    <text x="528" y="200" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">vector store</text>
-    <text x="528" y="215" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">local disk only</text>
+    <line x1="588" y1="230" x2="602" y2="230" stroke="#4fd6ff" stroke-width="2" marker-end="url(#arrowC)"/>
 
-    <!-- vertical connector down to router -->
-    <line x1="568" y1="230" x2="568" y2="268" stroke="#4fd6ff" stroke-width="2" opacity="0.7"/>
-    <circle cx="568" cy="268" r="3.5" fill="#4fd6ff"/>
-
-    <!-- Node: Your Question -->
-    <rect x="56" y="300" width="176" height="72" rx="12" fill="url(#greenFace)" stroke="#3fae66" stroke-width="1.6"/>
-    <path d="M76 320 h30 M76 330 h30 M76 340 h18" stroke="#8fe3a8" stroke-width="1.6"/>
-    <text x="112" y="326" font-size="15.5" font-weight="700" fill="#eafff0">Your Question</text>
-    <text x="112" y="344" font-size="11.5" fill="#8fd6a8" font-family="'Consolas',monospace">natural language, typed</text>
-    <text x="112" y="358" font-size="11.5" fill="#8fd6a8" font-family="'Consolas',monospace">no query syntax needed</text>
-
-    <line x1="232" y1="336" x2="270" y2="336" stroke="#5be08a" stroke-width="2.2" marker-end="url(#arrowG)"/>
-
-    <!-- Node: Router -->
-    <rect x="275" y="300" width="190" height="72" rx="12" fill="url(#greenFace)" stroke="#3fae66" stroke-width="1.6"/>
-    <path d="M300 320 l12 8 -12 8 M300 328 h20" stroke="#8fe3a8" stroke-width="1.6" fill="none"/>
-    <text x="330" y="326" font-size="14.5" font-weight="700" fill="#eafff0">Router</text>
-    <text x="330" y="344" font-size="11" fill="#8fd6a8" font-family="'Consolas',monospace">deterministic logic</text>
-    <text x="330" y="358" font-size="11" fill="#8fd6a8" font-family="'Consolas',monospace">no LLM guessing</text>
-
-    <!-- branch to semantic search / text-to-sql -->
-    <line x1="465" y1="336" x2="500" y2="292" stroke="#5be08a" stroke-width="2.2" marker-end="url(#arrowG)"/>
-    <line x1="465" y1="336" x2="500" y2="380" stroke="#5be08a" stroke-width="2.2" marker-end="url(#arrowG)"/>
-
-    <rect x="505" y="262" width="200" height="60" rx="12" fill="url(#greenFace)" stroke="#3fae66" stroke-width="1.6"/>
-    <text x="528" y="288" font-size="13.5" font-weight="700" fill="#eafff0">Semantic Search</text>
-    <text x="528" y="304" font-size="10.5" fill="#8fd6a8" font-family="'Consolas',monospace">carrier/vendor isolation</text>
-
-    <rect x="505" y="352" width="200" height="60" rx="12" fill="url(#greenFace)" stroke="#3fae66" stroke-width="1.6"/>
-    <text x="528" y="378" font-size="13.5" font-weight="700" fill="#eafff0">Text-to-SQL</text>
-    <text x="528" y="394" font-size="10.5" fill="#8fd6a8" font-family="'Consolas',monospace">self-corrects on bad query</text>
-
-    <line x1="705" y1="292" x2="748" y2="310" stroke="#5be08a" stroke-width="2.2" marker-end="url(#arrowG)"/>
-    <line x1="705" y1="382" x2="748" y2="330" stroke="#5be08a" stroke-width="2.2" marker-end="url(#arrowG)"/>
-
-    <!-- Node: Local LLM -->
-    <rect x="753" y="288" width="196" height="64" rx="12" fill="url(#amberFace)" stroke="#c99a3f" stroke-width="1.6"/>
-    <rect x="768" y="304" width="14" height="14" fill="none" stroke="#ffd68a" stroke-width="1.4"/>
-    <path d="M775 300 v4 M775 318 v4 M768 311 h-4 M782 311 h4" stroke="#ffd68a" stroke-width="1.3"/>
-    <text x="792" y="314" font-size="14" font-weight="700" fill="#fff2da">Local LLM</text>
-    <text x="792" y="330" font-size="10.5" fill="#e0c088" font-family="'Consolas',monospace">Llama 3.2 via Ollama</text>
-    <text x="792" y="343" font-size="10.5" fill="#e0c088" font-family="'Consolas',monospace">auto-retry on fail</text>
-
-    <line x1="949" y1="320" x2="964" y2="320" stroke="#ffcf6a" stroke-width="2.2" marker-end="url(#arrowG)"/>
-
-    <!-- Node: Cited Answer -->
-    <rect x="969" y="288" width="180" height="64" rx="12" fill="#33131c" stroke="#c9506a" stroke-width="1.6"/>
-    <path d="M985 306 l6 6 -6 6 M985 312 h14" stroke="#ff9fb3" stroke-width="1.5" fill="none"/>
-    <text x="1006" y="314" font-size="14" font-weight="700" fill="#ffe3ea">Cited Answer</text>
-    <text x="1006" y="330" font-size="10.5" fill="#e39cad" font-family="'Consolas',monospace">[source.pdf, page N]</text>
-    <text x="1006" y="343" font-size="10.5" fill="#e39cad" font-family="'Consolas',monospace">verifiable, not a guess</text>
+    <!-- ChromaDB -->
+    <rect x="604" y="190" width="170" height="80" rx="12" fill="url(#chipFace)" stroke="#4fd6ff" stroke-width="1.4"/>
+    <rect x="618" y="202" width="28" height="28" rx="8" fill="#eaf6ff"/>
+    <ellipse cx="632" cy="209" rx="8" ry="3" fill="#1668c9"/>
+    <path d="M624 209 v14 a8 3 0 0 0 16 0 v-14" fill="none" stroke="#1668c9" stroke-width="1.5"/>
+    <path d="M624 215.5 a8 3 0 0 0 16 0" fill="none" stroke="#1668c9" stroke-width="1.1"/>
+    <text x="654" y="220" font-size="14.5" font-weight="700" fill="#eaf5ff">CHROMADB</text>
+    <text x="654" y="238" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">vector store</text>
+    <text x="654" y="252" font-size="11" fill="#8fb8e0" font-family="'Consolas',monospace">local disk only</text>
   </g>
 
-  <!-- ===================== Divider ===================== -->
-  <line x1="56" y1="440" x2="1144" y2="440" stroke="#1c3a66" stroke-width="1"/>
+  <!-- connector: ChromaDB -> Retrieved Context -->
+  <path d="M 689 270 L 689 320 L 1010 320" fill="none" stroke="#4fd6ff" stroke-width="2" opacity="0.8" marker-end="url(#arrowC)"/>
 
-  <!-- ===================== Stat strip ===================== -->
+  <!-- ============ USER QUESTION + ROUTER (outside panels) ============ -->
   <g font-family="'Segoe UI', Arial, sans-serif">
-    <text x="56" y="470" font-family="'Consolas',monospace" font-size="12" fill="#4fd6ff" letter-spacing="1.2">// WHY THIS EXISTS</text>
+    <rect x="46" y="340" width="170" height="80" rx="12" fill="url(#greenFace)" stroke="#5be08a" stroke-width="1.4"/>
+    <rect x="60" y="352" width="28" height="28" rx="8" fill="#e9fbf0"/>
+    <path d="M65 358 h18 a3 3 0 0 1 3 3 v8 a3 3 0 0 1 -3 3 h-8 l-5 5 v-5 h-2 a3 3 0 0 1 -3 -3 v-8 a3 3 0 0 1 3 -3 z" fill="#ffffff" stroke="#188a4e" stroke-width="1.4"/>
+    <text x="74" y="368.5" font-size="9.5" font-weight="700" fill="#188a4e" text-anchor="middle">?</text>
+    <text x="100" y="370" font-size="14" font-weight="700" fill="#eafff0">USER QUESTION</text>
+    <text x="100" y="388" font-size="10.5" fill="#8fd6a8" font-family="'Consolas',monospace">plain English</text>
+    <text x="100" y="401" font-size="10.5" fill="#8fd6a8" font-family="'Consolas',monospace">no special syntax</text>
 
-    <text x="56" y="500" font-size="15.5" font-weight="700" fill="#ffffff">Zero cloud exposure</text>
-    <text x="56" y="521" font-size="12" fill="#9fb3d1">Runs fully on-device, nothing leaves it</text>
+    <line x1="216" y1="380" x2="288" y2="380" stroke="#5be08a" stroke-width="2" marker-end="url(#arrowG)"/>
 
-    <text x="328" y="500" font-size="15.5" font-weight="700" fill="#ffffff">3 input types, 1 pipeline</text>
-    <text x="328" y="521" font-size="12" fill="#9fb3d1">Text, tables, and OCR'd screenshots</text>
-
-    <text x="600" y="500" font-size="15.5" font-weight="700" fill="#ffffff">Asks, doesn't guess</text>
-    <text x="600" y="521" font-size="12" fill="#9fb3d1">Clarifies instead of guessing</text>
-
-    <text x="872" y="500" font-size="15.5" font-weight="700" fill="#ffffff">Fully open source</text>
-    <text x="872" y="521" font-size="12" fill="#9fb3d1">Every config point documented</text>
+    <rect x="300" y="340" width="150" height="80" rx="12" fill="url(#greenFace)" stroke="#5be08a" stroke-width="1.4"/>
+    <rect x="314" y="352" width="28" height="28" rx="8" fill="#e9fbf0"/>
+    <circle cx="322" cy="366" r="2.6" fill="#188a4e"/>
+    <circle cx="332" cy="360" r="2.2" fill="#188a4e"/>
+    <circle cx="332" cy="372" r="2.2" fill="#188a4e"/>
+    <line x1="324" y1="365" x2="330" y2="361" stroke="#188a4e" stroke-width="1.3"/>
+    <line x1="324" y1="367" x2="330" y2="371" stroke="#188a4e" stroke-width="1.3"/>
+    <text x="354" y="370" font-size="14" font-weight="700" fill="#eafff0">ROUTER</text>
+    <text x="354" y="388" font-size="10.5" fill="#8fd6a8" font-family="'Consolas',monospace">code-based logic</text>
+    <text x="354" y="401" font-size="10.5" fill="#8fd6a8" font-family="'Consolas',monospace">no LLM guessing</text>
   </g>
 
-  <!-- ===================== Tech stack chips ===================== -->
-  <g font-family="'Consolas', 'SF Mono', monospace" font-size="12" font-weight="600">
-    <rect x="56" y="558" width="76" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="94" y="576" fill="#bfe3ff" text-anchor="middle">Python</text>
+  <!-- branch lines from Router into the retrieval panel — exit at the box's
+       vertical midline first (a gap between the text rows), THEN diverge,
+       so the lines never visually cross the router's own label text -->
+  <path d="M 450 380 L 490 380 L 805 280" fill="none" stroke="#5be08a" stroke-width="2" marker-end="url(#arrowG)"/>
+  <path d="M 450 380 L 490 380 L 805 370" fill="none" stroke="#5be08a" stroke-width="2" marker-end="url(#arrowG)"/>
 
-    <rect x="140" y="558" width="82" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="181" y="576" fill="#bfe3ff" text-anchor="middle">FastAPI</text>
+  <!-- ============ RETRIEVAL PHASE PANEL ============ -->
+  <rect x="805" y="150" width="560" height="280" rx="16" fill="#0a2a22" opacity="0.55" stroke="#3fae66" stroke-width="1.4"/>
+  <text x="1348" y="172" text-anchor="end" font-family="'Consolas',monospace" font-size="13" font-weight="700" fill="#8fe3a8" letter-spacing="1">RETRIEVAL PHASE</text>
 
-    <rect x="230" y="558" width="96" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="278" y="576" fill="#bfe3ff" text-anchor="middle">ChromaDB</text>
+  <g font-family="'Segoe UI', Arial, sans-serif">
+    <!-- Semantic Search -->
+    <rect x="820" y="250" width="170" height="60" rx="12" fill="url(#greenFace)" stroke="#5be08a" stroke-width="1.4"/>
+    <rect x="832" y="260" width="24" height="24" rx="7" fill="#e9fbf0"/>
+    <circle cx="840" cy="268" r="4.5" fill="#ffffff" stroke="#188a4e" stroke-width="1.5"/>
+    <line x1="843.5" y1="271.5" x2="848" y2="276" stroke="#188a4e" stroke-width="1.6" stroke-linecap="round"/>
+    <text x="866" y="276" font-size="13" font-weight="700" fill="#eafff0">SEMANTIC SEARCH</text>
+    <text x="866" y="292" font-size="10" fill="#8fd6a8" font-family="'Consolas',monospace">vendor isolation</text>
 
-    <rect x="334" y="558" width="150" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="409" y="576" fill="#bfe3ff" text-anchor="middle">sentence-transformers</text>
+    <!-- Text-to-SQL -->
+    <rect x="820" y="340" width="170" height="60" rx="12" fill="url(#greenFace)" stroke="#5be08a" stroke-width="1.4"/>
+    <rect x="832" y="350" width="24" height="24" rx="7" fill="#e9fbf0"/>
+    <rect x="838" y="356" width="12" height="11" rx="1.5" fill="#ffffff" stroke="#188a4e" stroke-width="1.3"/>
+    <line x1="838" y1="360.5" x2="850" y2="360.5" stroke="#188a4e" stroke-width="1"/>
+    <line x1="838" y1="363.5" x2="850" y2="363.5" stroke="#188a4e" stroke-width="1"/>
+    <line x1="844" y1="356" x2="844" y2="367" stroke="#188a4e" stroke-width="1"/>
+    <text x="866" y="366" font-size="13" font-weight="700" fill="#eafff0">TEXT-TO-SQL</text>
+    <text x="866" y="382" font-size="10" fill="#8fd6a8" font-family="'Consolas',monospace">retries failed SQL</text>
 
-    <rect x="492" y="558" width="130" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="557" y="576" fill="#bfe3ff" text-anchor="middle">Ollama / Llama 3.2</text>
+    <line x1="990" y1="280" x2="1005" y2="300" stroke="#5be08a" stroke-width="2" marker-end="url(#arrowG)"/>
+    <line x1="990" y1="370" x2="1005" y2="350" stroke="#5be08a" stroke-width="2" marker-end="url(#arrowG)"/>
 
-    <rect x="630" y="558" width="82" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="671" y="576" fill="#bfe3ff" text-anchor="middle">SQLite</text>
+    <!-- Retrieved Context -->
+    <rect x="1010" y="280" width="140" height="110" rx="12" fill="url(#greenFace)" stroke="#5be08a" stroke-width="1.4"/>
+    <rect x="1022" y="292" width="24" height="24" rx="7" fill="#e9fbf0"/>
+    <rect x="1027" y="298" width="14" height="3" rx="1.5" fill="#188a4e"/>
+    <rect x="1027" y="303.5" width="14" height="3" rx="1.5" fill="#188a4e" opacity="0.7"/>
+    <rect x="1027" y="309" width="9" height="3" rx="1.5" fill="#188a4e" opacity="0.45"/>
+    <text x="1030" y="336" font-size="12.5" font-weight="700" fill="#eafff0">RETRIEVED</text>
+    <text x="1030" y="352" font-size="12.5" font-weight="700" fill="#eafff0">CONTEXT</text>
+    <text x="1030" y="370" font-size="10" fill="#8fd6a8" font-family="'Consolas',monospace">chunks + key terms</text>
 
-    <rect x="720" y="558" width="88" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="764" y="576" fill="#bfe3ff" text-anchor="middle">EasyOCR</text>
+    <line x1="1150" y1="335" x2="1165" y2="335" stroke="#5be08a" stroke-width="2" marker-end="url(#arrowG)"/>
 
-    <rect x="816" y="558" width="98" height="28" rx="14" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
-    <text x="865" y="576" fill="#bfe3ff" text-anchor="middle">PyMuPDF</text>
+    <!-- Local LLM -->
+    <rect x="1170" y="280" width="150" height="110" rx="12" fill="url(#amberFace)" stroke="#c99a3f" stroke-width="1.4"/>
+    <rect x="1182" y="292" width="26" height="26" rx="8" fill="#fff6e6"/>
+    <path d="M1195 298 a5 5 0 0 0 -5 5 a4 4 0 0 0 2 3.5 v1.5 h6 v-1.5 a4 4 0 0 0 2 -3.5 a5 5 0 0 0 -5 -5 z" fill="#ffffff" stroke="#a8720a" stroke-width="1.3"/>
+    <path d="M1192 304 q3 -2.5 6 0" fill="none" stroke="#a8720a" stroke-width="0.9"/>
+    <line x1="1195" y1="308" x2="1195" y2="310" stroke="#a8720a" stroke-width="1.2"/>
+    <text x="1215" y="313" font-size="13.5" font-weight="700" fill="#fff2da">LOCAL LLM</text>
+    <text x="1182" y="336" font-size="10" fill="#e0c088" font-family="'Consolas',monospace">Ollama &#183; Llama 3.2</text>
+    <text x="1182" y="350" font-size="10" fill="#e0c088" font-family="'Consolas',monospace">auto-retry on fail</text>
+
+    <line x1="1320" y1="335" x2="1338" y2="335" stroke="#ffcf6a" stroke-width="2" marker-end="url(#arrowG)"/>
+  </g>
+
+  <!-- Cited Answer (protrudes past the retrieval panel edge, like a final output) -->
+  <rect x="1343" y="295" width="180" height="80" rx="12" fill="url(#roseFace)" stroke="#c9506a" stroke-width="1.6"/>
+  <rect x="1357" y="307" width="26" height="26" rx="8" fill="#fdeef2"/>
+  <path d="M1370 309 l7 2.5 v6 c0 4 -3 6.5 -7 8 c-4 -1.5 -7 -4 -7 -8 v-6 z" fill="#ffffff" stroke="#a8285a" stroke-width="1.3"/>
+  <path d="M1366.5 320 l2.5 2.5 4.5 -5.5" fill="none" stroke="#a8285a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1394" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#ffe3ea">CITED ANSWER</text>
+  <text x="1357" y="346" font-size="10" fill="#e39cad" font-family="'Consolas',monospace">[source.pdf, page N]</text>
+  <text x="1357" y="359" font-size="10" fill="#e39cad" font-family="'Consolas',monospace">verifiable, not a guess</text>
+
+  <!-- ============ TECH STACK ============ -->
+  <line x1="48" y1="450" x2="1512" y2="450" stroke="#1c3a66" stroke-width="1"/>
+  <text x="48" y="480" font-family="'Consolas',monospace" font-size="13" fill="#4fd6ff" letter-spacing="1.2">TECHNOLOGY STACK</text>
+
+  <g font-family="'Consolas', 'SF Mono', monospace" font-size="14" font-weight="600">
+    <rect x="48" y="500" width="92" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="94" y="522" fill="#bfe3ff" text-anchor="middle">Python</text>
+
+    <rect x="160" y="500" width="98" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="209" y="522" fill="#bfe3ff" text-anchor="middle">FastAPI</text>
+
+    <rect x="278" y="500" width="116" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="336" y="522" fill="#bfe3ff" text-anchor="middle">ChromaDB</text>
+
+    <rect x="414" y="500" width="188" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="508" y="522" fill="#bfe3ff" text-anchor="middle">sentence-transformers</text>
+
+    <rect x="622" y="500" width="166" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="705" y="522" fill="#bfe3ff" text-anchor="middle">Ollama / Llama 3.2</text>
+
+    <rect x="808" y="500" width="98" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="857" y="522" fill="#bfe3ff" text-anchor="middle">SQLite</text>
+
+    <rect x="926" y="500" width="108" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="980" y="522" fill="#bfe3ff" text-anchor="middle">EasyOCR</text>
+
+    <rect x="1054" y="500" width="118" height="34" rx="17" fill="#0c1d3d" stroke="#2f6ec2" stroke-width="1"/>
+    <text x="1113" y="522" fill="#bfe3ff" text-anchor="middle">PyMuPDF</text>
   </g>
 </svg>
